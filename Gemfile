@@ -13,6 +13,7 @@ gem 'jquery-rails', '~> 4.3'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bcrypt', '~> 3.1.12'
 
 group :development, :test do
   gem 'sqlite3'
