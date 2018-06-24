@@ -5,7 +5,7 @@ class UserSignupTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_select "form[action='/signup']"
     assert_no_difference "User.count" do
-      post signup_path, params: { user: {  name: "",
+      post signup_path, params: { user: { name: "",
                                           email: "user@invalid",
                                           password: "foo",
                                           password_confirmation: "bar"} }
@@ -14,4 +14,18 @@ class UserSignupTest < ActionDispatch::IntegrationTest
     assert_select "div#error_explanation"
     assert_select "div.field_with_errors"
   end
+
+  test "valid signup infomation" do
+    get signup_path
+    assert_difference "User.count", 1 do
+      post signup_path, params: { user: { name: "xuan le",
+                                          email: "xuanle@gmail.com",
+                                          password: "12345678",
+                                          password_confirmation: "12345678"} }
+    end
+    follow_redirect!
+    assert_template "users/show"
+    assert_not flash.empty?
+  end
+
 end
