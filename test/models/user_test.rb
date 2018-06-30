@@ -53,7 +53,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "email should be downcase before save to database" do
-    test_email = "BINH@GMAIL.COM"
+    test_email = "BINHUY@GMAIL.COM"
     @user.email = test_email
     @user.save
     assert_equal test_email.downcase, @user.reload.email
